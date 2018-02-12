@@ -52,7 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CopyObjectCommand.cs" />
-    <Compile Include="CopyObjectCommand1Package.cs" />
+    <Compile Include="CopyObjectCommandPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,12 +63,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="CopyObjectCommand1Package.vsct">
+    <VSCTCompile Include="CopyObjectCommandPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
     <Content Include="index.html" />
-    <Content Include="Resources\CopyObjectCommand1.png" />
-    <Content Include="Resources\CopyObjectCommand1Package.ico" />
+    <Content Include="Resources\CopyObjectCommand.png" />
+    <Content Include="Resources\CopyObjectCommandPackage.ico" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
