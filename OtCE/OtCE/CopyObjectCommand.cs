@@ -1,10 +1,11 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="CopyObjectCommand1.cs" company="Company">
+// <copyright file="CopyObjectCommand1.cs" company="Alex Nelson">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics;
 using System.ComponentModel.Design;
 using System.Globalization;
 using Microsoft.VisualStudio.Shell;
@@ -15,7 +16,7 @@ namespace OtCE
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class CopyObjectCommand1
+    internal sealed class CopyObjectCommand
     {
         /// <summary>
         /// Command ID.
@@ -37,7 +38,7 @@ namespace OtCE
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private CopyObjectCommand1(Package package)
+        private CopyObjectCommand(Package package)
         {
             if (package == null)
             {
@@ -50,7 +51,7 @@ namespace OtCE
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.MenuItemCallback, menuCommandID);
+                var menuItem = new MenuCommand(this.CopyObject, menuCommandID);
                 commandService.AddCommand(menuItem);
             }
         }
@@ -58,7 +59,7 @@ namespace OtCE
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static CopyObjectCommand1 Instance
+        public static CopyObjectCommand Instance
         {
             get;
             private set;
@@ -81,7 +82,7 @@ namespace OtCE
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-            Instance = new CopyObjectCommand1(package);
+            Instance = new CopyObjectCommand(package);
         }
 
         /// <summary>
@@ -91,19 +92,11 @@ namespace OtCE
         /// </summary>
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event args.</param>
-        private void MenuItemCallback(object sender, EventArgs e)
+        private void CopyObject(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "CopyObjectCommand1";
-
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            Process proc = new Process();
+            proc.StartInfo.FileName = "notepad.exe";
+            proc.Start();
         }
     }
 }

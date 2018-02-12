@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CopyObjectCommand1.cs" />
+    <Compile Include="CopyObjectCommand.cs" />
     <Compile Include="CopyObjectCommand1Package.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
